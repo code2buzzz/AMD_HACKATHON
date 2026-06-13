@@ -1,0 +1,5 @@
+country_code,country_name,sanction_status,regulatory_reference
+KP,North Korea,Critical,OFAC-2026-KP
+RU,Russia,Critical,EU-2026-RU
+IR,Iran,High,UN-RE-092
+SY,Syria,High,UKHM-991

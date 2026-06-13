@@ -1,0 +1,26 @@
+[33m83a87e5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: rebase (finish): returning to refs/heads/main
+[33m83a87e5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: rebase (pick): ubuntu refactored code
+[33m7dacb1e[m HEAD@{2}: rebase (pick): Update .env
+[33medce5f8[m HEAD@{3}: rebase (pick): Create .env
+[33md8e090b[m HEAD@{4}: rebase (start): checkout 59dfcb7
+[33m54af54f[m HEAD@{5}: rebase (finish): returning to refs/heads/main
+[33m54af54f[m HEAD@{6}: rebase (pick): ubuntu refactored code
+[33m9c5d450[m HEAD@{7}: rebase (pick): Update .env
+[33mf3a2ffb[m HEAD@{8}: rebase (pick): Create .env
+[33m123e1ba[m HEAD@{9}: rebase (start): checkout 59dfcb7
+[33m48dd057[m HEAD@{10}: commit: ubuntu refactored code
+[33md9eb7a8[m HEAD@{11}: pull: Merge made by the 'ort' strategy.
+[33m123e1ba[m HEAD@{12}: commit: ubuntu refactored code
+[33md8e090b[m HEAD@{13}: commit: done coding
+[33m8c28256[m HEAD@{14}: commit: done coding
+[33m10729a9[m HEAD@{15}: commit: added singleton RAG system
+[33m3fbb988[m HEAD@{16}: commit: added singleton RAG system
+[33m51dd698[m HEAD@{17}: commit: added agents and integrated tools
+[33m79880d2[m HEAD@{18}: commit: added agents and integrated tools
+[33m5c0b94c[m HEAD@{19}: commit: added agents and integrated tools
+[33m9ca2d01[m HEAD@{20}: commit: added agents and integrated tools
+[33m599cfac[m HEAD@{21}: commit: added agents and integrated tools
+[33mc23c4ba[m HEAD@{22}: commit: modularized the code
+[33ma1cab63[m HEAD@{23}: commit: modularized the code
+[33mbda8f3b[m HEAD@{24}: commit: new final code structure is done
+[33m59dfcb7[m HEAD@{25}: clone: from https://github.com/code2buzzz/FINAL_HACKATHON_CODE.git

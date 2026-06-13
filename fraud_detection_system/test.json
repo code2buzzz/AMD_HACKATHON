@@ -1,0 +1,67 @@
+{
+    "incident_report": {
+        "incident_id": "INC-20260613-0045",
+        "timestamp": "2026-06-13T13:02:00Z",
+        "severity": "CRITICAL",
+        "vulnerability_type": "Orchestrator Bypass / Logic Conflict",
+        "target_transaction": {
+            "transaction_id": "TX_a5f210b396c24be8910fdc772a441e8d",
+            "customer_id": "CUST_00150",
+            "beneficiary_id": "BENE_00340",
+            "beneficiary_name": "Isabella Nunez",
+            "amount": 1250.0,
+            "currency": "INR",
+            "payment_method": "UPI",
+            "timestamp": "2026-06-13T10:15:30Z"
+        },
+        "agent_evaluations": {
+            "anomaly_agent": {
+                "realtime_risk_score": 21.47,
+                "status": "LOW",
+                "finding": "Transaction patterns and amount (1250.0 INR) align with 7-day average baseline (1180.5 INR)."
+            },
+            "behavioral_agent": {
+                "risk_score": 0.65,
+                "status": "MEDIUM",
+                "finding": "Elevated device risk score (12.5) and shared device mule count (1) detected."
+            },
+            "network_agent": {
+                "risk_score": 0.8,
+                "status": "HIGH",
+                "finding": "Direct graph connection to entity with active sanction linkage."
+            },
+            "compliance_agent": {
+                "risk_score": 0.8,
+                "status": "HIGH",
+                "finding": "Sanctions risk and potential AML violations flagged due to underlying entity matching."
+            }
+        },
+        "orchestration_failure_log": {
+            "reasoning_engine_risk": "HIGH",
+            "reasoning_engine_confidence": 0.91,
+            "actual_system_action": "ALLOW_TRANSACTION",
+            "actual_orchestrator_decision": "APPROVED",
+            "root_cause_analysis": "The final execution layer executed the standard behavioral route approval instead of triggering a hard-stop override. High-severity compliance alerts (>= 0.70) failed to intercept the low-risk anomaly classifier."
+        },
+        "remediation_protocol": [
+            {
+                "step": 1,
+                "action": "MANUAL_FREEZE",
+                "target": "TX_a5f210b396c24be8910fdc772a441e8d",
+                "description": "Intercept settlement process to manually freeze funds."
+            },
+            {
+                "step": 2,
+                "action": "SUSPEND_ACCOUNT",
+                "target": "CUST_00150",
+                "description": "Place a temporary regulatory hold on the originating account for full due diligence."
+            },
+            {
+                "step": 3,
+                "action": "PATCH_GATEWAY",
+                "target": "Orchestrator Rules Engine",
+                "description": "Deploy emergency override rule ensuring any agent reporting risk >= 0.70 triggers an immediate REJECT."
+            }
+        ]
+    }
+}

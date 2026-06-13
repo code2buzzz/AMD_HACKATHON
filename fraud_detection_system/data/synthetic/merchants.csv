@@ -1,0 +1,101 @@
+merchant_id,merchant_name,merchant_category,merchant_country,merchant_risk_rating,fraud_transaction_count,total_transaction_count,merchant_status,created_at
+MERCH_00001,Rios and Sons,Shell Utility,Guinea,Medium,2,1611,Active,2023-12-14 12:04:51.438397
+MERCH_00002,"Stevens, Davis and Lawrence",Crypto Exchange,Faroe Islands,High,27,3228,Under Review,2025-02-05 12:04:51.438397
+MERCH_00003,Robinson-Hanson,Crypto Exchange,Cote d'Ivoire,Low,1,4124,Active,2024-12-21 12:04:51.438397
+MERCH_00004,Miles Ltd,Gaming,Norway,Low,0,2948,Active,2025-05-24 12:04:51.438397
+MERCH_00005,Reyes-Horton,Crypto Exchange,Finland,Low,2,689,Active,2024-11-01 12:04:51.438397
+MERCH_00006,"French, Cole and Palmer",Retail,Maldives,Medium,0,1135,Active,2023-12-04 12:04:51.439400
+MERCH_00007,"Williams, Clark and Martin",Retail,Guadeloupe,Low,2,3307,Active,2025-07-20 12:04:51.439400
+MERCH_00008,"Wallace, Herrera and Mcdonald",Crypto Exchange,Malta,Low,2,2625,Active,2024-03-22 12:04:51.439400
+MERCH_00009,Perry-Lynn,Shell Utility,Latvia,Medium,1,4509,Active,2024-05-17 12:04:51.439400
+MERCH_00010,"Bell, Young and Smith",Electronics,Morocco,Medium,1,4203,Active,2023-12-02 12:04:51.439400
+MERCH_00011,Burton LLC,Retail,Wallis and Futuna,Low,0,4182,Active,2024-07-11 12:04:51.439400
+MERCH_00012,"Lewis, Christensen and Rodriguez",Crypto Exchange,Haiti,Low,1,4677,Active,2024-12-23 12:04:51.440430
+MERCH_00013,"Figueroa, Johnson and Wright",Retail,Qatar,Low,1,1838,Active,2024-05-22 12:04:51.440430
+MERCH_00014,"Boone, Thomas and Vazquez",Shell Utility,Armenia,Medium,0,1626,Active,2024-02-03 12:04:51.440430
+MERCH_00015,"Turner, Hinton and Dorsey",Retail,Serbia,Low,2,4982,Active,2024-12-19 12:04:51.440430
+MERCH_00016,"Armstrong, Maynard and Woods",Crypto Exchange,Estonia,Low,0,1791,Active,2025-06-14 12:04:51.441429
+MERCH_00017,Shepherd-White,Crypto Exchange,South Africa,Low,1,2101,Active,2023-03-31 12:04:51.441429
+MERCH_00018,Garcia-Howard,Retail,Congo,Low,2,823,Active,2024-08-10 12:04:51.441429
+MERCH_00019,"Webb, Goodwin and Crawford",Crypto Exchange,Nicaragua,High,20,3786,Under Review,2024-09-29 12:04:51.441429
+MERCH_00020,"Thompson, Gray and Jenkins",Electronics,Martinique,Medium,1,1136,Active,2023-08-12 12:04:51.441429
+MERCH_00021,Jones Inc,Retail,Uzbekistan,Medium,1,4929,Active,2024-08-22 12:04:51.441429
+MERCH_00022,Pham Inc,Electronics,Slovakia (Slovak Republic),Medium,2,3822,Active,2025-01-30 12:04:51.441429
+MERCH_00023,Jordan PLC,Retail,Morocco,Low,1,958,Active,2024-05-16 12:04:51.441429
+MERCH_00024,Clark and Sons,Shell Utility,Indonesia,Low,1,2939,Active,2024-02-08 12:04:51.442430
+MERCH_00025,Briggs-Taylor,Gaming,Tuvalu,Low,2,1011,Active,2025-04-12 12:04:51.442430
+MERCH_00026,"Santos, Singleton and Jones",Crypto Exchange,Singapore,Medium,2,3833,Active,2024-03-24 12:04:51.442430
+MERCH_00027,Marks Group,Electronics,Saudi Arabia,Medium,1,3908,Active,2025-06-06 12:04:51.442430
+MERCH_00028,Moore Inc,Crypto Exchange,Kazakhstan,Low,1,3769,Active,2023-07-24 12:04:51.442430
+MERCH_00029,Ward-Wagner,Electronics,Northern Mariana Islands,High,19,1755,Under Review,2023-05-31 12:04:51.442430
+MERCH_00030,Ward-Harris,Electronics,Cocos (Keeling) Islands,Medium,1,1115,Active,2024-04-10 12:04:51.442430
+MERCH_00031,Myers Ltd,Electronics,South Georgia and the South Sandwich Islands,Low,0,1749,Active,2023-10-06 12:04:51.443398
+MERCH_00032,Wright Ltd,Retail,Hong Kong,Medium,2,3367,Active,2024-12-25 12:04:51.443398
+MERCH_00033,Salazar Group,Shell Utility,North Macedonia,Low,1,4271,Active,2023-10-15 12:04:51.443398
+MERCH_00034,"Reed, Dixon and Underwood",Gaming,Netherlands,Low,0,3394,Active,2023-11-05 12:04:51.443398
+MERCH_00035,Mcbride and Sons,Gaming,Ukraine,Medium,2,4385,Active,2023-06-07 12:04:51.443398
+MERCH_00036,Lewis-Pierce,Shell Utility,British Virgin Islands,Medium,0,4256,Active,2025-02-23 12:04:51.443398
+MERCH_00037,"Martinez, Moore and King",Gaming,Malaysia,Low,2,3280,Active,2023-08-31 12:04:51.443398
+MERCH_00038,Cruz-Morton,Retail,Philippines,Low,2,2588,Active,2025-07-18 12:04:51.443398
+MERCH_00039,"May, Lewis and David",Shell Utility,Tanzania,Low,2,4620,Active,2024-07-03 12:04:51.444431
+MERCH_00040,Marshall-Juarez,Gaming,Malaysia,Medium,1,2844,Active,2024-02-18 12:04:51.444431
+MERCH_00041,Roach-Collins,Gaming,Belarus,Medium,0,2404,Active,2024-09-25 12:04:51.444431
+MERCH_00042,Robinson Group,Electronics,Romania,Medium,0,2464,Active,2023-12-09 12:04:51.444431
+MERCH_00043,Campbell and Sons,Shell Utility,Mayotte,Medium,2,4218,Active,2024-06-29 12:04:51.444431
+MERCH_00044,"Bryant, Nelson and Blankenship",Gaming,Vanuatu,Medium,0,3231,Active,2023-03-14 12:04:51.444431
+MERCH_00045,Thomas and Sons,Gaming,Kenya,Medium,0,3698,Active,2023-11-11 12:04:51.444431
+MERCH_00046,Carter-Villanueva,Retail,Mauritius,Medium,1,2092,Active,2024-12-09 12:04:51.444431
+MERCH_00047,Navarro Inc,Retail,Iraq,Low,1,1591,Active,2025-05-15 12:04:51.445593
+MERCH_00048,"Watson, Williams and Duarte",Gaming,Yemen,Medium,2,3312,Active,2025-02-17 12:04:51.445593
+MERCH_00049,Flowers-Wood,Electronics,Iraq,Low,1,1903,Active,2023-05-22 12:04:51.445593
+MERCH_00050,"Sanders, Hill and Cline",Shell Utility,United States of America,Medium,0,2278,Active,2025-01-30 12:04:51.445593
+MERCH_00051,"Henderson, Briggs and Mcdaniel",Retail,United Kingdom,Medium,1,2681,Active,2024-08-10 12:04:51.445593
+MERCH_00052,"Jones, Walker and Martin",Retail,Togo,Medium,0,2719,Active,2023-03-09 12:04:51.446558
+MERCH_00053,"Mcgrath, Roy and Mendoza",Gaming,Burkina Faso,Low,0,1362,Active,2024-04-26 12:04:51.446558
+MERCH_00054,Miller Ltd,Shell Utility,Belize,Medium,1,3223,Active,2024-04-15 12:04:51.446558
+MERCH_00055,Rhodes and Sons,Gaming,United States Minor Outlying Islands,Low,2,4853,Active,2023-08-13 12:04:51.446558
+MERCH_00056,Pearson-Carr,Crypto Exchange,Hong Kong,Medium,0,4642,Active,2025-04-27 12:04:51.446558
+MERCH_00057,Nguyen Group,Retail,Djibouti,Low,2,1411,Active,2025-04-14 12:04:51.446558
+MERCH_00058,"Elliott, Franklin and Fleming",Electronics,Azerbaijan,Medium,1,1922,Active,2024-12-03 12:04:51.446558
+MERCH_00059,Powell PLC,Crypto Exchange,Croatia,Low,2,4605,Active,2024-05-22 12:04:51.446558
+MERCH_00060,"Rose, Werner and Bryant",Electronics,Falkland Islands (Malvinas),Low,1,2256,Active,2023-10-20 12:04:51.447557
+MERCH_00061,Hartman LLC,Shell Utility,Saint Barthelemy,Medium,1,1468,Active,2024-08-14 12:04:51.447557
+MERCH_00062,Bryant-Chaney,Retail,Maldives,Low,1,3089,Active,2023-05-12 12:04:51.447557
+MERCH_00063,Williamson-Warner,Crypto Exchange,Slovakia (Slovak Republic),Low,2,2304,Active,2023-03-24 12:04:51.447557
+MERCH_00064,Davis Group,Shell Utility,Cyprus,Low,2,2421,Active,2025-06-29 12:04:51.447557
+MERCH_00065,Carlson-Brewer,Electronics,Bahamas,Low,1,3156,Active,2023-07-22 12:04:51.447557
+MERCH_00066,"Harris, Hansen and Hull",Retail,Australia,Low,2,4621,Active,2025-05-16 12:04:51.448558
+MERCH_00067,Walker-Gordon,Electronics,Sweden,Medium,0,4419,Active,2024-02-17 12:04:51.448558
+MERCH_00068,Smith LLC,Electronics,Brunei Darussalam,Low,1,2184,Active,2023-07-17 12:04:51.448558
+MERCH_00069,"Robertson, Bray and Mclean",Retail,Niue,High,49,3905,Under Review,2025-08-04 12:04:51.448558
+MERCH_00070,Patton-Hayes,Shell Utility,Uruguay,Medium,0,716,Active,2024-07-27 12:04:51.448558
+MERCH_00071,Gray Inc,Shell Utility,Vanuatu,Medium,0,4152,Active,2024-10-05 12:04:51.448558
+MERCH_00072,Gibson PLC,Gaming,Western Sahara,Low,2,4522,Active,2023-12-14 12:04:51.448558
+MERCH_00073,Juarez Group,Retail,Bosnia and Herzegovina,Medium,1,573,Active,2024-06-09 12:04:51.448558
+MERCH_00074,"Hale, Parsons and Hines",Crypto Exchange,Macao,Medium,0,3367,Active,2023-12-31 12:04:51.449562
+MERCH_00075,Fox Inc,Retail,Sudan,High,36,3108,Under Review,2025-08-15 12:04:51.449562
+MERCH_00076,Levine Inc,Gaming,Madagascar,Low,1,861,Active,2025-08-16 12:04:51.449562
+MERCH_00077,"Russell, Jones and Hanson",Retail,Cyprus,Low,1,1852,Active,2024-01-24 12:04:51.449562
+MERCH_00078,Robinson-Hart,Shell Utility,Cyprus,Medium,2,2358,Active,2023-11-02 12:04:51.449562
+MERCH_00079,Anderson-Pitts,Gaming,Samoa,Low,2,3703,Active,2025-05-28 12:04:51.449562
+MERCH_00080,"Solis, Smith and Hernandez",Shell Utility,Bangladesh,Medium,0,3546,Active,2025-07-11 12:04:51.449562
+MERCH_00081,"Benjamin, Melendez and Stevenson",Shell Utility,Micronesia,Medium,1,4208,Active,2024-03-18 12:04:51.450562
+MERCH_00082,Pittman-Yoder,Gaming,United States of America,Low,0,1052,Active,2024-10-29 12:04:51.450562
+MERCH_00083,Church-Miller,Crypto Exchange,Slovakia (Slovak Republic),Low,1,3713,Active,2025-08-03 12:04:51.450562
+MERCH_00084,Rios-Flores,Gaming,Nauru,Medium,0,2520,Active,2023-08-26 12:04:51.450562
+MERCH_00085,"Davis, Garcia and Cervantes",Electronics,Isle of Man,Low,2,3399,Active,2024-01-03 12:04:51.450562
+MERCH_00086,"Gomez, Gray and Mitchell",Shell Utility,Tanzania,Medium,2,2738,Active,2024-05-07 12:04:51.450562
+MERCH_00087,Alvarado LLC,Electronics,Albania,Medium,0,4512,Active,2023-08-29 12:04:51.451564
+MERCH_00088,"Hart, Cole and Bruce",Shell Utility,Swaziland,Low,2,2381,Active,2025-07-19 12:04:51.451564
+MERCH_00089,Davis LLC,Electronics,Haiti,Medium,2,4343,Active,2023-10-12 12:04:51.451564
+MERCH_00090,Graves Group,Shell Utility,Gabon,Low,1,4133,Active,2024-05-30 12:04:51.451564
+MERCH_00091,Hart Inc,Crypto Exchange,Portugal,High,27,830,Under Review,2024-08-05 12:04:51.451564
+MERCH_00092,"Robinson, Allen and Perez",Shell Utility,Latvia,Medium,2,4886,Active,2025-05-04 12:04:51.451564
+MERCH_00093,Perez PLC,Crypto Exchange,Australia,Low,2,956,Active,2024-12-18 12:04:51.451564
+MERCH_00094,James Inc,Electronics,Nauru,Low,0,4847,Active,2024-08-18 12:04:51.451564
+MERCH_00095,"Guerrero, Lara and Sandoval",Electronics,Niue,Medium,1,623,Active,2023-03-26 12:04:51.451564
+MERCH_00096,"Becker, Kelly and Callahan",Gaming,Saint Vincent and the Grenadines,Medium,1,4333,Active,2024-07-11 12:04:51.451564
+MERCH_00097,"Owens, Evans and Chandler",Electronics,American Samoa,High,56,1170,Under Review,2023-05-24 12:04:51.451564
+MERCH_00098,"Davila, Duran and Phelps",Retail,Fiji,Low,2,2883,Active,2025-04-07 12:04:51.453069
+MERCH_00099,Villanueva Inc,Gaming,Taiwan,Medium,1,2840,Active,2025-05-03 12:04:51.453069
+MERCH_00100,Brown-Fowler,Gaming,Grenada,Medium,1,2903,Active,2025-06-16 12:04:51.453069

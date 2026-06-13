@@ -1,0 +1,4 @@
+session_id,typing_speed_flag,session_duration_minutes,failed_transaction_count_24h,account_takeover_suspected
+SESS_9921,True,0.4,9,True
+SESS_1044,False,12.5,0,False
+SESS_8831,True,0.8,14,True

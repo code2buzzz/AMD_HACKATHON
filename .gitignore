@@ -3,6 +3,8 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+secrets.txt
+*/secrets.txt
 # C extensions
 *.so
 
@@ -149,6 +151,7 @@ activemq-data/
 
 # Environments
 .env
+*/.env
 .envrc
 .venv
 env/

@@ -1,0 +1,2 @@
+FinCEN Suspicious Activity Quick Reference Guide - Structuring Guidelines.
+Individuals or syndicates attempting to evade standard cash transaction reporting thresholds often split large volumes of funds into smaller, sequential increments (smurfing behavior). For example, processing three separate $4,500 wire transfers within an hour instead of a single $13,500 transfer triggers direct structuring alerts. Transactions routing to high-risk sanctioned regions such as North Korea or Russia violate international policy and mandate an immediate SAR.

@@ -1,0 +1,17 @@
+Pro Tip for Hackathon Debugging:
+If your graph variable is a compiled LangGraph workspace, you can replace .invoke() with .stream() to watch nodes fire off sequentially. It's incredibly useful for showing live execution progress on a presentation slide or in the terminal:
+
+Python
+# To stream state mutations node-by-node instead of a single block call:
+for event in graph.stream(initial_state):
+    for node_name, updated_state in event.items():
+        logger.info(f"📍 State modified via Node: [{node_name}]")
+
+
+
+*************
+Modify graph structure
+
+
+in network_node.py
+max_iterations=2,  # Safe loop limit for nested investigations [make it 5 in prod]
