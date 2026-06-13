@@ -1,0 +1,2 @@
+ollama pull qwen3.6:35b
+ollama pull 

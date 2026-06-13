@@ -27,16 +27,16 @@ few_shot_examples = [
     {
         "question": "Find customer C1001.",
         "cypher": """
-MATCH (c:Customer {customer_id:'C1001'})
-RETURN c
+MATCH (c:Customer {{customer_id:'C1001'}})
+RETURN c.customer_id AS customer_id, c.customer_name AS customer_name, c.email AS email
 LIMIT 1
 """,
     },
     {
         "question": "Find transaction TXN5001.",
         "cypher": """
-MATCH (t:Transaction {transaction_id:'TXN5001'})
-RETURN t
+MATCH (t:Transaction {{transaction_id:'TXN5001'}})
+RETURN t.transaction_id AS transaction_id, t.transaction_amount AS amount, t.transaction_status AS status
 LIMIT 1
 """,
     },
@@ -46,10 +46,10 @@ LIMIT 1
     {
         "question": "Count all graph connections for customer C1001.",
         "cypher": """
-MATCH (c:Customer {customer_id:'C1001'})
+MATCH (c:Customer {{customer_id:'C1001'}})
 RETURN
     c.customer_id AS customer_id,
-    COUNT { (c)--() } AS total_connections
+    COUNT {{ (c)--() }} AS total_connections
 """,
     },
     {
@@ -58,7 +58,7 @@ RETURN
 MATCH (c:Customer)
 RETURN
     c.customer_id AS customer_id,
-    COUNT { (c)--() } AS connection_count
+    COUNT {{ (c)--() }} AS connection_count
 ORDER BY connection_count DESC
 LIMIT 10
 """,
@@ -69,7 +69,7 @@ LIMIT 10
     {
         "question": "Show relationship types between customer C1001 and beneficiaries.",
         "cypher": """
-MATCH (c:Customer {customer_id:'C1001'})-[r]-(b:Beneficiary)
+MATCH (c:Customer {{customer_id:'C1001'}})-[r]-(b:Beneficiary)
 RETURN
     c.customer_id AS customer_id,
     COLLECT(DISTINCT TYPE(r)) AS relationship_types
@@ -86,7 +86,7 @@ RETURN
     {
         "question": "Find all beneficiaries connected to customer C1001 and show relationship types.",
         "cypher": """
-MATCH (c:Customer {customer_id:'C1001'})-[r]-(b:Beneficiary)
+MATCH (c:Customer {{customer_id:'C1001'}})-[r]-(b:Beneficiary)
 RETURN
     b.receiver_name AS beneficiary_name,
     TYPE(r) AS relationship_type
@@ -98,7 +98,7 @@ RETURN
     {
         "question": "Find customers sharing the same device as customer C1001.",
         "cypher": """
-MATCH (c1:Customer {customer_id:'C1001'})
+MATCH (c1:Customer {{customer_id:'C1001'}})
       -[:HAS_DEVICE]->
       (d:Device)
       <-[:HAS_DEVICE]-
@@ -169,7 +169,7 @@ RETURN
         "question": "Find transaction path from customer C1001 to beneficiaries.",
         "cypher": """
 MATCH p=
-(c:Customer {customer_id:'C1001'})
+(c:Customer {{customer_id:'C1001'}})
 -[:MADE_TRANSACTION]->
 (t:Transaction)
 -[:TO_BENEFICIARY]->
@@ -183,7 +183,7 @@ LIMIT 20
         "question": "Find paths between customer C1001 and sanction entities.",
         "cypher": """
 MATCH p=
-(c:Customer {customer_id:'C1001'})
+(c:Customer {{customer_id:'C1001'}})
 -[:MADE_TRANSACTION]->
 (t:Transaction)
 -[:TO_BENEFICIARY]->
@@ -201,7 +201,7 @@ LIMIT 20
     {
         "question": "Show customer C1001 and any linked sanction entities.",
         "cypher": """
-MATCH (c:Customer {customer_id:'C1001'})
+MATCH (c:Customer {{customer_id:'C1001'}})
 
 OPTIONAL MATCH
 (c)-[:HAS_BENEFICIARY]->
@@ -297,7 +297,7 @@ RETURN
         "question": "Find customers connected within three hops of customer C1001.",
         "cypher": """
 MATCH p=
-(c:Customer {customer_id:'C1001'})
+(c:Customer {{customer_id:'C1001'}})
 -[*1..3]-
 (other)
 
@@ -312,7 +312,7 @@ LIMIT 20
         "question": "Investigate all entities connected to customer C1001.",
         "cypher": """
 MATCH
-(c:Customer {customer_id:'C1001'})
+(c:Customer {{customer_id:'C1001'}})
 --(n)
 
 RETURN
@@ -327,7 +327,6 @@ example_prompt = PromptTemplate(
     template="\nQuestion: {question}\nCypher Query: {cypher}\n",
 )
 
-# FIXED: Doubled curly braces around Cypher literal blocks {{ ... }}
 prefix = """You are a Neo4j Cypher expert. Given an input question, your job is to write a valid, read-only Neo4j 5.x Cypher query.
 
 Schema:
@@ -375,36 +374,8 @@ Path Rules:
 Output Requirements:
 - Generate syntactically valid Neo4j 5.x Cypher only.
 - Every generated query must be executable without modification.
-
-
-Common Invalid Patterns (NEVER GENERATE)
-
-Invalid:
-    TYPE((c)-[]-(b))
-
-Valid:
-    MATCH (c)-[r]-(b)
-    RETURN TYPE(r)
-
-Invalid:
-    SIZE((c)--())
-
-Valid:
-    COUNT {{ (c)--() }}
-
-Invalid:
-    MATCH (c)-[]-(b)
-    RETURN TYPE(r)
-
-Valid:
-    MATCH (c)-[r]-(b)
-    RETURN TYPE(r)
-
-Invalid:
-    LABELS((c)--(b))
-
-Valid:
-    LABELS(c)
+- CRITICAL: Never RETURN an entire node variable (e.g., NEVER "RETURN c" or "RETURN t"). 
+  Instead, always return explicit properties using aliases (e.g., "RETURN c.customer_id AS customer_id, c.customer_name AS customer_name").
 
 Here are examples of correct conversions:"""
 
@@ -468,7 +439,10 @@ def query_graph_database(question: str) -> str:
         if not db_result:
             return "Investigation Note: No records found in the graph for this query configuration."
 
-        return str(db_result)
+        try:
+            return str(db_result)
+        except KeyError as ke:
+            return f"Investigation Note: Graph returned raw nodes which failed parser lookup for key {str(ke)}. Please ask a more specific query returning explicit properties."
 
     except Exception as e:
         return f"Investigation Note: Query failed to execute. Error: {str(e)}."
