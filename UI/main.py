@@ -69,36 +69,32 @@ def get_latest_transactions(db: Session = Depends(get_db)):
 
 @app.get("/api/metrics/today")
 def get_todays_kpis(db: Session = Depends(get_db)):
+    """Computes exact categorical KPI decision counters since midnight."""
     today_start = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
 
+    # Aggregate absolute distinct status matches safely using database-side trimming
     metrics = (
         db.query(
-            func.count(TransactionAnalysisLog.transaction_analysis_id).label(
-                "total_evals"
-            ),
-            func.max(TransactionAnalysisLog.fraud_probability).label("max_fraud_prob"),
+            func.count(TransactionAnalysisLog.transaction_analysis_id).label("total_tx"),
             func.count(TransactionAnalysisLog.transaction_analysis_id)
-            .filter(func.trim(func.upper(TransactionAnalysisLog.decision)) != "APPROVE")
-            .label("total_alerts"),
-            func.sum(Transaction.transaction_amount).label("total_volume"),
-        )
-        .join(
-            Transaction,
-            TransactionAnalysisLog.transaction_id == Transaction.transaction_id,
+            .filter(func.trim(func.lower(TransactionAnalysisLog.decision)) == "approve")
+            .label("accepted_count"),
+            func.count(TransactionAnalysisLog.transaction_analysis_id)
+            .filter(func.trim(func.lower(TransactionAnalysisLog.decision)) == "review")
+            .label("review_count"),
+            func.count(TransactionAnalysisLog.transaction_analysis_id)
+            .filter(func.trim(func.lower(TransactionAnalysisLog.decision)) == "block")
+            .label("blocked_count"),
         )
         .filter(TransactionAnalysisLog.created_at >= today_start)
         .first()
     )
 
     return {
-        "total_evaluations": metrics.total_evals or 0,
-        "highest_fraud_probability": (
-            (float(metrics.max_fraud_prob) * 100.0) if metrics.max_fraud_prob else 0.0
-        ),
-        "flagged_or_blocked_count": metrics.total_alerts or 0,
-        "total_transacted_volume": (
-            float(metrics.total_volume) if metrics.total_volume else 0.0
-        ),
+        "total_transactions": metrics.total_tx or 0,
+        "accepted": metrics.accepted_count or 0,
+        "review_required": metrics.review_count or 0,
+        "blocked": metrics.blocked_count or 0,
     }
 
 

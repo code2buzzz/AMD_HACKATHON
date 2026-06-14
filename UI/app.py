@@ -3,101 +3,122 @@ import requests
 import pandas as pd
 from streamlit_autorefresh import st_autorefresh
 
-st.set_page_config(page_title="BankDB Intelligence Center", layout="wide")
-st.title("🛡️ BankDB Anti-Fraud Engine Control Center")
+# ---------------------------------
+# PAGE CONFIG
+# ---------------------------------
+st.set_page_config(
+    page_title="BankDB Intelligence Center", page_icon="🛡️", layout="wide"
+)
 
 FASTAPI_URL = "http://127.0.0.1:8000/api"
 
-active_tab = st.radio(
-    "Navigation Window Selection",
-    ["🔴 Live Security Matrix Dashboard", "🔍 Historical Logs Deep Investigation"],
-    horizontal=True,
-    label_visibility="collapsed",
+# ---------------------------------
+# CUSTOM BRAND THEME STYLES
+# ---------------------------------
+st.markdown(
+    """
+<style>
+.block-container {
+    padding-top: 1.5rem;
+}
+
+.stDataFrame {
+    border-radius: 15px;
+    overflow: hidden;
+}
+</style>
+""",
+    unsafe_allow_html=True,
 )
 
-st.markdown("---")
+# ---------------------------------
+# HEADER SECTION
+# ---------------------------------
+st.title("🛡️ BankDB Anti-Fraud Engine Control Center")
+st.caption("Real-time Fraud Monitoring Dashboard")
 
 # ==========================================
-# WINDOW 1: LIVE SECURITY DASHBOARD
+# GLOBAL DATA FETCHING FOR KPI LAYER
 # ==========================================
-if active_tab == "🔴 Live Security Matrix Dashboard":
-    st.header("Real-Time Automated Evaluation Matrix")
-    st.caption("Screen updates automatically every 30s.")
+kpis = {"total_transactions": 0, "accepted": 0, "review_required": 0, "blocked": 0}
+tx_data = []
 
-    st_autorefresh(interval=30000, key="live_matrix_refresh")
+try:
+    kpi_response = requests.get(f"{FASTAPI_URL}/metrics/today")
+    if kpi_response.status_code == 200:
+        kpis = kpi_response.json()
 
-    try:
-        tx_response = requests.get(f"{FASTAPI_URL}/transactions/latest")
-        kpi_response = requests.get(f"{FASTAPI_URL}/metrics/today")
-
-        if tx_response.status_code == 200 and kpi_response.status_code == 200:
-            tx_data = tx_response.json()
-            kpis = kpi_response.json()
-
-            st.markdown("### 📊 Today's Cumulative Performance Summary")
-            kpi_col1, kpi_col2, kpi_col3, kpi_col4 = st.columns(4)
-
-            kpi_col1.metric("Today's Total Runs", f"{kpis['total_evaluations']:,}")
-            kpi_col2.metric(
-                "Today's Alerts (Review/Block)", f"{kpis['flagged_or_blocked_count']:,}"
-            )
-            kpi_col3.metric(
-                "Peak Threat Level Today",
-                f"{kpis['highest_fraud_probability']:.1f}% Prob",
-            )
-            kpi_col4.metric(
-                "Total Monitored Vol (Today)",
-                f"${kpis['total_transacted_volume']:,.2f}",
-            )
-
-            st.markdown("---")
-            st.markdown("### 📜 Newest Submissions Feed (Top 15 Rows)")
-
-            if tx_data:
-                display_df = pd.DataFrame(tx_data).drop(columns=["agent_payloads"])
-                st.dataframe(
-                    display_df,
-                    width="stretch",
-                    hide_index=True,
-                    column_config={
-                        "timestamp": "Evaluation Time",
-                        "amount": st.column_config.NumberColumn(
-                            "Amount", format="$%.2f"
-                        ),
-                        "fraud_probability": st.column_config.ProgressColumn(
-                            "Fraud Prob", min_value=0, max_value=100, format="%.1f%%"
-                        ),
-                    },
-                    column_order=[
-                        "timestamp",
-                        "transaction_id",
-                        "customer_id",
-                        "amount",
-                        "currency",
-                        "payment_method",
-                        "fraud_probability",
-                        "overall_risk_score",
-                        "risk_category",
-                        "decision",
-                        "investigation_status",
-                    ],
-                )
-            else:
-                st.info("Awaiting transactional evaluations from stream source...")
-        else:
-            st.error("Engine Core API Connection Interrupted.")
-    except requests.exceptions.ConnectionError:
-        st.error("Connection Refused. Start your backend services pipeline.")
-
-# ==========================================
-# WINDOW 2: HISTORY LOOKUP & DEEP COMPLIANCE INSPECTION
-# ==========================================
-else:
-    st.header("Audit & Search Log Ledger")
-    st.caption(
-        "Static processing environment. Layout configurations are safe from automated refresh loops."
+    tx_response = requests.get(f"{FASTAPI_URL}/transactions/latest")
+    if tx_response.status_code == 200:
+        tx_data = tx_response.json()
+except requests.exceptions.ConnectionError:
+    st.error(
+        "Engine telemetry service pipeline offline. Please start your backend application."
     )
 
+# ---------------------------------
+# ALIGNED METRIC PRESENTATION LAYER
+# ---------------------------------
+st.markdown("### 📊 Today's Cumulative Performance Summary")
+c1, c2, c3, c4 = st.columns(4)
+
+c1.metric("Total Transactions Today", f"{kpis['total_transactions']:,}")
+c2.metric("Accepted", f"{kpis['accepted']:,}")
+c3.metric("Review Required", f"{kpis['review_required']:,}")
+c4.metric("Blocked", f"{kpis['blocked']:,}")
+
+st.divider()
+
+# ---------------------------------
+# BRAND TAB VIEW DEFINITIONS
+# ---------------------------------
+tab1, tab2 = st.tabs(["📡 Live Monitoring", "🔍 Transaction Search"])
+
+# ==========================================
+# TAB 1 - LIVE MONITORING WORKSPACE
+# ==========================================
+with tab1:
+    # Trigger auto-refresh loop exclusively inside the active stream tab frame
+    st_autorefresh(interval=30000, key="live_matrix_refresh")
+
+    st.subheader("📊 Live Transactions (Top 15 Rows)")
+    if tx_data:
+        display_df = pd.DataFrame(tx_data).drop(columns=["agent_payloads"])
+        st.dataframe(
+            display_df,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "timestamp": "Evaluation Time",
+                "amount": st.column_config.NumberColumn("Amount", format="$%.2f"),
+                "fraud_probability": st.column_config.ProgressColumn(
+                    "Fraud Prob", min_value=0, max_value=100, format="%.1f%%"
+                ),
+            },
+            column_order=[
+                "timestamp",
+                "transaction_id",
+                "customer_id",
+                "amount",
+                "currency",
+                "payment_method",
+                "fraud_probability",
+                "overall_risk_score",
+                "risk_category",
+                "decision",
+                "investigation_status",
+            ],
+        )
+    else:
+        st.info("Awaiting transactional evaluations from stream source...")
+
+# ==========================================
+# TAB 2 - TRANSACTION SEARCH ARCHIVE
+# ==========================================
+with tab2:
+    st.subheader("🔍 Search Transactions Log Ledger")
+
+    # Filter Layout Panel Row
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         search_cust = st.text_input("Customer ID Match", value="")
@@ -112,6 +133,7 @@ else:
     with col4:
         page_size = st.selectbox("Page Size Allocation", options=[10, 25, 50], index=0)
 
+    # Initialize current pagination step trace
     if "current_page" not in st.session_state:
         st.session_state.current_page = 1
 
@@ -122,7 +144,7 @@ else:
         "size": page_size,
     }
 
-    # Intercept changes and run immediate explicit state resets
+    # Tracking change parameters to reset pagination step counters
     reset_required = False
     for key, current_value in active_filters.items():
         session_key = f"prev_{key}"
@@ -134,7 +156,7 @@ else:
 
     if reset_required:
         st.session_state.current_page = 1
-        st.rerun()  # Instantly re-evaluates the view layout
+        st.rerun()
 
     params = {
         "page": st.session_state.current_page,
@@ -153,7 +175,7 @@ else:
             table_data = payload.get("data", [])
 
             st.markdown(
-                f"Query returned **{total_records}** records matched across centralized ledger index lines."
+                f"Query returned **{total_records}** records matched across index lines."
             )
 
             if table_data:
@@ -173,6 +195,7 @@ else:
                     },
                 )
 
+                # Multi-Agent Telemetry Explorer Section
                 st.markdown("### 🔬 Multi-Agent Telemetry Explorer")
                 target_tx = st.selectbox(
                     "Select unique transaction record to trace evaluation paths:",
@@ -204,6 +227,7 @@ else:
             else:
                 st.warning("No records found matching the current filters.")
 
+            # Pagination Elements Controls
             st.markdown("---")
             p_col1, p_col2, p_col3 = st.columns([1, 2, 1])
 
