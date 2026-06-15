@@ -1,0 +1,81 @@
+fraud_detection_system/
+│
+├── main.py                         # Application CLI runner / Entrypoint Orchestrator
+|
+├── config/                             # Centralized settings & environment parsers
+│   ├── .env
+│   └── settings.py
+│
+├── data/                               # Database schemas and physical flat files
+│   ├── raw/
+│   ├── synthetic/
+│   └── sql/
+│       ├── create_tables.sql
+│       └── drop_tables.sql
+│
+├── deploy/                             # Containerization and container dependencies
+│   └── docker-compose.yaml
+│
+├── models/                             # Serialized ML production weights
+│   └── artifacts/
+│
+├── storage/                            # Persistent localized databases
+│   └── chroma_storage/
+│
+└── src/                                # System source root module
+    ├── __init__.py
+    │
+    ├── components/                     # Pluggable feature sub-packages
+    │   ├── __init__.py
+    │   │
+    │   ├── data_gen/                   # Simulation Engine
+    │   │   ├── __init__.py
+    │   │   └── generator.py
+    │   │
+    │   ├── database/                   # Storage Layer Engine
+    │   │   ├── __init__.py
+    │   │   ├── postgres_client.py      # Core connection pooling wrapper
+    │   │   ├── neo4j_client.py         # Graph Driver connection manager
+    │   │   ├── postgres_ingest.py      # Bulk file ingestion pipelines
+    │   │   └── neo4j_ingest.py         # Batch unwinding Cypher engines
+    │   │
+    │   ├── streaming/                  # Kafka cluster communication bus
+    │   │   ├── __init__.py
+    │   │   ├── producer.py
+    │   │   └── consumer.py
+    │   │
+    │   ├── models/                     # XGBoost Inference pipeline wrapper
+    │   │   ├── __init__.py
+    │   │   └── predictor.py
+    │   │
+    │   ├── rag/                        # Knowledge Base Embeddings & Vectors
+    │   │   ├── __init__.py
+    │   │   ├── ingestion.py
+    │   │   └── retriever.py
+    │   │
+    │   └── agents/                     # LangGraph Multi-Agent Cluster
+    │       ├── __init__.py
+    │       ├── state.py                # Typed Dict GraphState schema definitions
+    │       ├── graph.py                # Graph structural topology, transitions, and compilation
+    │       │
+    │       ├── nodes/                  # Isolated core analytical workers
+    │       │   ├── __init__.py
+    │       │   ├── anomaly_node.py     # Worker 1: XGBoost classification wrapper
+    │       │   ├── behavioral_node.py  # Worker 2: Biometric/ATO analyzer
+    │       │   ├── network_node.py     # Worker 3: Graph structural analyzer
+    │       │   └── compliance_node.py  # Worker 4: Sanction/AML inspector
+    │       │
+    │       └── tools/                  # Shared custom tool belts
+    │           ├── __init__.py
+    │           ├── graph_tools.py      # Automated Cypher QA runtimes
+    │           └── rag_tools.py        # Vector document search spaces
+    │
+    ├── dashboard/                      # UI Visualization Layer (Streamlit)
+    │   ├── __init__.py
+    │   ├── app.py                      # Dashboard application main loop (polling last 12 txs)
+    │   └── visuals.py                  # Custom metric cards, Plotly charts, and terminal layouts
+    │
+    └── mcp_servers/                    # Independent Model Context Protocol Layer
+        ├── __init__.py
+        ├── guardrail_server.py         # Server 1: Input/Output validation & safety rails
+        └── graph_retriever_server.py   # Server 2: Structural context expansion provider

@@ -1,0 +1,2 @@
+OWASP Automated Threats Section OAT-019: Account Takeover (ATO).
+Indicators include extreme typing speed anomalies, immediate transaction execution following an unauthorized login, and session durations dropping below 60 seconds. Credential stuffing (OAT-008) often precedes this exploit, characterized by automated bots testing large variations of usernames and passwords against banking API endpoints.
