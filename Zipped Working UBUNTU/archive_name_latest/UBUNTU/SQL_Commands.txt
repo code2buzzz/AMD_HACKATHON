@@ -1,9 +1,0 @@
-Create BankDB : sudo -u postgres psql -c 'CREATE DATABASE "BankDB";
-
-
-Drop all tables in BankDB 
-# 1. Drop the database
-sudo -u postgres psql -c 'DROP DATABASE "BankDB";'
-
-# 2. Recreate it clean
-sudo -u postgres psql -c 'CREATE DATABASE "BankDB";'
